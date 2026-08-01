@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: secureops-ingress
+  namespace: secureops
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+    - host: secureops.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: secureops-backend
+                port:
+                  number: 5000

@@ -5,7 +5,12 @@ from flask_jwt_extended import JWTManager
 
 from app.config import Config
 from app.database.db import db
+
+# Authentication Blueprint
 from app.auth.auth_routes import auth_bp
+
+# Project Blueprint
+from app.routes.project_routes import project_bp
 
 # Initialize extensions
 bcrypt = Bcrypt()
@@ -14,7 +19,7 @@ jwt = JWTManager()
 
 def create_app():
 
-    # Create Flask app FIRST
+    # Create Flask application
     app = Flask(__name__)
 
     # Load configuration
@@ -36,8 +41,9 @@ def create_app():
 
     # Register Blueprints
     app.register_blueprint(auth_bp)
+    app.register_blueprint(project_bp)
 
-    # Home endpoint
+    # Home API
     @app.route("/")
     def home():
         return {
@@ -47,7 +53,7 @@ def create_app():
             "message": "Welcome to SecureOps API"
         }, 200
 
-    # Health endpoint
+    # Health API
     @app.route("/health")
     def health():
         return {
