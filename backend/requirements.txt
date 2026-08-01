@@ -1,6 +1,11 @@
 Flask
 Flask-SQLAlchemy
-psycopg2-binary
+Flask-Migrate
+Flask-JWT-Extended
+Flask-Cors
 python-dotenv
-pytest
+psycopg2-binary
+marshmallow
+flasgger
 gunicorn
+pytest
