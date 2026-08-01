@@ -52,6 +52,8 @@ Docker Hub
 
         
 ☸ Kubernetes Architecture
+
+
                     Ingress
                        │
             ┌──────────┴──────────┐
