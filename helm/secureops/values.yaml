@@ -1,0 +1,30 @@
+replicaCount: 2
+
+image:
+  repository: anant1102/secureops-backend
+  tag: v1
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 5000
+
+postgres:
+  image: postgres:16
+  db: secureops
+  user: postgres
+  password: postgres
+  storage: 2Gi
+
+ingress:
+  enabled: true
+  className: nginx
+  host: secureops.local
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
