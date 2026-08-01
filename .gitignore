@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Docker
+*.tar
+
+# Kubernetes
+*.kube
+
+# OS
+.DS_Store
+Thumbs.db
