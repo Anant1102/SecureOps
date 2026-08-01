@@ -59,9 +59,10 @@ Docker Hub
             ┌──────────┴──────────┐
             │                     │
             ▼                     ▼
- Backend Service           PostgreSQL Service
+    Backend Service         PostgreSQL Service
             │                     │
-      Backend Pods          PostgreSQL Pod
+      Backend Pods          PostgreSQL Pod  
+
 
       
 🔐 Security Pipeline
