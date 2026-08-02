@@ -1,0 +1,58 @@
+name: GitOps Continuous Delivery
+
+on:
+  workflow_dispatch:
+
+  workflow_run:
+    workflows:
+      - SecureOps Enterprise DevSecOps Pipeline
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+env:
+  IMAGE_NAME: anant1102/secureops-backend
+
+jobs:
+
+  gitops:
+
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    ############################################################
+    # Checkout SecureOps Repository
+    ############################################################
+
+    - name: Checkout SecureOps Repository
+      uses: actions/checkout@v4
+
+    ############################################################
+    # Checkout Enterprise GitOps Repository
+    ############################################################
+
+    - name: Checkout GitOps Repository
+      uses: actions/checkout@v4
+      with:
+        repository: Anant1102/Enterprise-GitOps-Platform
+        token: ${{ secrets.GITOPS_PAT }}
+        ref: main
+        path: gitops
+
+    ############################################################
+    # Verify Repository
+    ############################################################
+
+    - name: Verify GitOps Repository
+      run: |
+        echo "======================================="
+        echo "GitOps Repository Cloned Successfully"
+        echo "======================================="
+        ls -R gitops
